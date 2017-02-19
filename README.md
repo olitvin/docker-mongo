@@ -45,11 +45,11 @@ docker exec [container_name] /mongo_restore.sh [folder_name]
 - Mongo:latest
 
 ## Note
-** build **
+**build**
 ```
 sudo docker build -t positron/mongo -t positron/mongo:3 -t positron/mongo:3.4 -t positron/mongo:latest /home/positron/My/Webs/docker/mongo/
 ```
-** push **
+**push**
 ```
 sudo docker push positron/mongo
 ```
