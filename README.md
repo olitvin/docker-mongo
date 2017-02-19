@@ -10,32 +10,37 @@
 Network Mode = host
 
 **docker-compose**
->  mongo1:
->    container_name: "mongo1"
->    image: positron/mongo
->    environment:
->      - MONGO_USER=admin
->      - MONGO_PASS=password
->      - MONGO_DB=test
->      - MONGO_PORT=17017
->    restart: always
->    privileged: true
->    volumes:
->      - /var/lib/mongo/db1:/data/db
->      - /var/lib/mongo/backup1:/data/backup
->    network_mode: "host"
+```yaml
+  mongo1:
+    container_name: "mongo1"
+    image: positron/mongo
+    environment:
+      - MONGO_USER=admin
+      - MONGO_PASS=password
+      - MONGO_DB=test
+      - MONGO_PORT=17017
+    restart: always
+    privileged: true
+    volumes:
+      - /var/lib/mongo/db1:/data/db
+      - /var/lib/mongo/backup1:/data/backup
+    network_mode: "host"
+```
 
 **docker run**
-> docker run -e MONGO_USER=admin -e MONGO_PASS=password -e MONGO_DB=test -e MONGO_PORT=17017 -v  /var/lib/mongo/db1:/data/db -v /var/lib/mongo/backup1:/data/backup positron/mongo
-
+```
+docker run -e MONGO_USER=admin -e MONGO_PASS=password -e MONGO_DB=test -e MONGO_PORT=17017 -v  /var/lib/mongo/db1:/data/db -v /var/lib/mongo/backup1:/data/backup positron/mongo
+```
 **backup**
 backup to "/var/lib/mongo/backup/[folder_name]"
-> docker exec [container_name] /mongo_backup.sh [folder_name]
-
+```
+docker exec [container_name] /mongo_backup.sh [folder_name]
+```
 **restore**
 restore from "/var/lib/mongo/backup/[folder_name]"
-> docker exec [container_name] /mongo_restore.sh [folder_name]
-
+```
+docker exec [container_name] /mongo_restore.sh [folder_name]
+```
 
 ## Package
 - Mongo:latest
