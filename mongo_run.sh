@@ -31,11 +31,9 @@ echo "=> Done"
 EOF
 chmod a+x /mongo_restore.sh
 
-
 set -m
 
-cmd="mongod --storageEngine wiredTiger --master --auth --port $MONGO_PORT"
-
+cmd="mongod --port $MONGO_PORT --storageEngine wiredTiger --oplogSize 1 --auth"
 numa='numactl --interleave=all'
 if $numa true &> /dev/null; then
 	cmd="$numa $cmd"

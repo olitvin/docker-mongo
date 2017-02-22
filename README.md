@@ -34,12 +34,12 @@ docker run -e MONGO_USER=admin -e MONGO_PASS=password -e MONGO_DB=test -e MONGO_
 **backup**
 backup to "/var/lib/mongo/backup/[folder_name]"
 ```
-docker exec [container_name] /mongo_backup.sh [folder_name]
+docker exec -it [container] /mongo_backup.sh [folder_name]
 ```
 **restore**
 restore from "/var/lib/mongo/backup/[folder_name]"
 ```
-docker exec [container_name] /mongo_restore.sh [folder_name]
+docker exec -it [container] /mongo_restore.sh [folder_name]
 ```
 
 ## Package
@@ -48,7 +48,7 @@ docker exec [container_name] /mongo_restore.sh [folder_name]
 ## Note
 **build**
 ```
-sudo docker build -t positron/mongo -t positron/mongo:3 -t positron/mongo:3.4 -t positron/mongo:latest /home/positron/My/Webs/docker/mongo/
+sudo docker build -t positron/mongo -t positron/mongo:3 -t positron/mongo:3.4 -t positron/mongo:latest /home/positron/My/Webs/.docker/mongo/
 ```
 **push**
 ```
