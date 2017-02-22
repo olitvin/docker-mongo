@@ -1,7 +1,7 @@
 # MongoDB Image
 My Docker Images
 
-[NGINX](https://hub.docker.com/r/positron/nginx) -> [PHP-FPM](https://hub.docker.com/r/positron/php) -> [MONGO](https://hub.docker.com/r/positron/mongo) / [MEMCACHED](https://hub.docker.com/r/positron/memcached)
+[NGINX](https://hub.docker.com/r/positron/nginx) -> [PHP-FPM](https://hub.docker.com/r/positron/php) -> [MONGO](https://hub.docker.com/r/positron/mongo)
 
 ## Dockerfile
 [positron/mongo](https://github.com/positronth/docker-mongo/blob/master/Dockerfile), [positron/mongo:3](https://github.com/positronth/docker-mongo/blob/master/Dockerfile), [positron/mongo:3.4](https://github.com/positronth/docker-mongo/blob/master/Dockerfile), [positron/mongo:latest](https://github.com/positronth/docker-mongo/blob/master/Dockerfile)
