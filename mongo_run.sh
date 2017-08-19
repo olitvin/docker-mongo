@@ -50,7 +50,7 @@ if [ ! -f '/data/db/mongo_pwd.txt' ]; then
     RET=$?
   done
   mongo --port $MONGO_PORT admin --eval "db.createUser({user:'$MONGO_USER',pwd:'$MONGO_PASS',roles:['root']});"
-  mongo --port $MONGO_PORT admin --eval "db.createUser({user:'$MONGO_USER',pwd:'$MONGO_PASS',roles:[{role:'readWrite',db:'$MONGO_DB'}]});"
+  mongo --port $MONGO_PORT $MONGO_DB --eval "db.createUser({user:'$MONGO_USER',pwd:'$MONGO_PASS',roles:[{role:'readWrite',db:'$MONGO_DB'}]});"
   touch /data/db/mongo_pwd.txt
   echo "=> Created user/password for admin"
   echo "=> Created user/password for $MONGO_DB"
