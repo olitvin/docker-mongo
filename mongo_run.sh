@@ -33,7 +33,7 @@ chmod a+x /mongo_restore.sh
 
 set -m
 
-cmd="mongod --port $MONGO_PORT --storageEngine wiredTiger --oplogSize 1 --auth"
+cmd="mongod --port $MONGO_PORT --storageEngine wiredTiger --oplogSize 1"
 numa='numactl --interleave=all'
 if $numa true &> /dev/null; then
 	cmd="$numa $cmd"
@@ -49,11 +49,11 @@ if [ ! -f '/data/db/mongo_pwd.txt' ]; then
     mongo --port $MONGO_PORT admin --eval "help" >/dev/null 2>&1
     RET=$?
   done
-  mongo --port $MONGO_PORT admin --eval "db.createUser({user:'$MONGO_USER',pwd:'$MONGO_PASS',roles:['root']});"
-  mongo --port $MONGO_PORT $MONGO_DB --eval "db.createUser({user:'$MONGO_USER',pwd:'$MONGO_PASS',roles:[{role:'readWrite',db:'$MONGO_DB'}]});"
-  touch /data/db/mongo_pwd.txt
-  echo "=> Created user/password for admin"
-  echo "=> Created user/password for $MONGO_DB"
+  mongo --port $MONGO_PORT admin --eval "db.createUser({user:'$MONGO_USER',pwd:'$MONGO_PASS',roles:['root']});" \
+    && echo "=> Created user/password for admin" || exit 0
+  mongo --port $MONGO_PORT $MONGO_DB --eval "db.createUser({user:'$MONGO_USER',pwd:'$MONGO_PASS',roles:[{role:'readWrite',db:'$MONGO_DB'}]});" \
+    && echo "=> Created user/password for $MONGO_DB" || exit 0
+  touch /data/db/mongo_pwd.txt  
 fi
 
 fg

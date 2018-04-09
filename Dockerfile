@@ -1,4 +1,4 @@
-FROM mongo:latest
+FROM mongo:3.4.9
 MAINTAINER Positron <positron@jarm.com>
 
 ENV MONGO_PORT "27017"
