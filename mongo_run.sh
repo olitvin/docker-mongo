@@ -33,7 +33,9 @@ chmod a+x /mongo_restore.sh
 
 set -m
 
-cmd="mongod --port $MONGO_PORT --storageEngine wiredTiger --oplogSize 1"
+rs=""
+[[ -n ${MONGO_REPLICA} ]] && rs="--replSet \"${MONGO_REPLICA}\""
+cmd="mongod --port $MONGO_PORT --storageEngine wiredTiger --oplogSize 1 ${rs}"
 numa='numactl --interleave=all'
 if $numa true &> /dev/null; then
 	cmd="$numa $cmd"
